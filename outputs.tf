@@ -8,12 +8,12 @@ output "public_subnets" {
   description = "IDs of the public subnets created"
 }
 
-output "ec2_instance_id" {
-  value       = module.ec2.id
-  description = "ID of the EC2 instance created"
-}
+# output "ec2_instance_id" {
+#   value       = module.ec2.id
+#   description = "ID of the EC2 instance created"
+# }
 
-output "ec2_name" {
-  value       = module.ec2.name
-  description = "Name of the EC2 instance created"
-}
+# output "ec2_name" {
+#   value       = module.ec2.name
+#   description = "Name of the EC2 instance created"
+# }
