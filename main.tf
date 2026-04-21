@@ -1,17 +1,17 @@
 module "vpc" {
   source = "./modules/vpc"
-  name   = "tf-iac-vpc"
-  cidr   = "10.1.0.0/16"
+  name   = var.vpc_name
+  cidr   = var.vpc_cidr
 
-  azs            = ["us-east-2a", "us-east-2b", "us-east-2c"]
-  public_subnets = ["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]
+  azs            = var.availability_zones
+  public_subnets = var.public_subnets
 }
 
 module "ec2" {
   source        = "./modules/ec2"
-  ami           = "ami-07062e2a343acc423"
-  instance_type = "t3.micro"
-  key_name      = null
+  ami           = var.ec2_ami
+  instance_type = var.ec2_instance_type
+  key_name      = var.ec2_key_name
   subnet_id     = module.vpc.public_subnets[0]
 
   depends_on = [module.vpc]
