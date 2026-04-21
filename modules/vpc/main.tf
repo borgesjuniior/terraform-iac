@@ -1,8 +1,11 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
 
-  name = var.vpc_name
-  cidr = var.vpc_cidr
+  name = var.name
+  cidr = var.cidr
+
+  azs = var.azs
+  public_subnets = var.public_subnets
 
   tags = {
     IaC = true

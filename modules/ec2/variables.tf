@@ -1,24 +1,28 @@
-variable ec2_name {
+variable name {
   type        = string
   default     = "ubuntu-instance"
   description = "Name of the EC2 instance"
 }
 
-variable ec2_ami {
+variable ami {
   type        = string
   description = "AMI ID for the EC2 instance"
 }
 
-variable ec2_instance_type {
+variable instance_type {
   type        = string
-  default     = "t3.micro"
   description = "Instance type for the EC2 instance"
 }
 
 
-variable  ec2_key_name {
+variable  key_name {
   type        = string
   description = "Key pair name for the EC2 instance"
+}
+
+variable subnet_id {
+  type        = string
+  description = "Subnet ID for the EC2 instance"
 }
 
 

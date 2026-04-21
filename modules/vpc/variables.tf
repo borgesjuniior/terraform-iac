@@ -1,12 +1,20 @@
-variable vpc_name {
+variable name {
   type        = string
-  default     = ""
   description = "Name of the VPC"
 }
 
-variable vpc_cidr {
+variable cidr {
   type        = string
-  default     = "10.0.0.0/16"
   description = "CIDR block for the VPC"
+}
+
+variable azs {
+  type        = list(string)
+  description = "Availability zones for the VPC"
+}
+
+variable public_subnets {
+  type        = list(string)
+  description = "CIDR blocks for public subnets"
 }
 
