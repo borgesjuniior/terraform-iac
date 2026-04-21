@@ -1,9 +1,17 @@
-# Este arquivo contém a configuração principal do Terraform, incluindo instanciações de módulos para a infraestrutura.
-
-# Instancia o módulo S3 com um nome "banana_s3" (pode ser qualquer identificador).
-# A fonte aponta para o diretório do módulo local.
-# nome_bucket é construído dinamicamente usando o workspace atual do Terraform.
-module "banana_s3" {
+module "s3" {
   source      = "./modules/s3"
-  bucket_name = "terraform-iac-bucket-${terraform.workspace}-4793450"
+  bucket_name = "tf-iac-bucket-${terraform.workspace}-777"
+}
+
+module "vpc" {
+  source = "./modules/vpc"
+  vpc_name = "tf-iac-vpc"
+  vpc_cidr   = "10.0.0.0/16"
+}
+
+module "ec2" {
+  source = "./modules/ec2"
+  ec2_ami = "ami-07062e2a343acc423" 
+  ec2_instance_type = "t3.micro"
+  ec2_key_name = "ubuntu-ssh-key" 
 }
