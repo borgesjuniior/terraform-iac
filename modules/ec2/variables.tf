@@ -1,6 +1,5 @@
 variable name {
   type        = string
-  default     = "ubuntu-instance"
   description = "Name of the EC2 instance"
 }
 

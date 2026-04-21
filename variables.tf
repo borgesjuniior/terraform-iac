@@ -1,41 +1,37 @@
-variable "vpc_name" {
-  type        = string
-  description = "Name of the VPC"
-  default     = "tf-iac-vpc"
+# VPC Configuration
+variable "vpc" {
+  type = object({
+    name               = string
+    cidr               = string
+    availability_zones = list(string)
+    public_subnets     = list(string)
+  })
+
+  description = "VPC configuration object"
+
+  default = {
+    name               = "tf-iac-vpc"
+    cidr               = "10.1.0.0/16"
+    availability_zones = ["us-east-2a", "us-east-2b", "us-east-2c"]
+    public_subnets     = ["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]
+  }
 }
 
-variable "vpc_cidr" {
-  type        = string
-  description = "CIDR block for the VPC"
-  default     = "10.1.0.0/16"
-}
+# EC2 Configuration
+variable "ec2" {
+  type = object({
+    name          = string
+    ami           = string
+    instance_type = string
+    key_name      = optional(string)
+  })
 
-variable "availability_zones" {
-  type        = list(string)
-  description = "Availability zones for the VPC"
-  default     = ["us-east-2a", "us-east-2b", "us-east-2c"]
-}
+  description = "EC2 instance configuration object"
 
-variable "public_subnets" {
-  type        = list(string)
-  description = "CIDR blocks for public subnets"
-  default     = ["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]
-}
-
-variable "ec2_ami" {
-  type        = string
-  description = "AMI ID for the EC2 instance"
-  default     = "ami-07062e2a343acc423"
-}
-
-variable "ec2_instance_type" {
-  type        = string
-  description = "Instance type for the EC2 instance"
-  default     = "t3.micro"
-}
-
-variable "ec2_key_name" {
-  type        = string
-  description = "Key pair name for the EC2 instance"
-  default     = null
+  default = {
+    name          = "ubuntu-instance"
+    ami           = "ami-07062e2a343acc423"
+    instance_type = "t3.micro"
+    key_name      = null
+  }
 }
